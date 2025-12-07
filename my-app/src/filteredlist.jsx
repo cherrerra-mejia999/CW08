@@ -1,6 +1,6 @@
 import React from 'react';
-import List from './List';
-import { DropdownButton, MenuItem } from 'react-bootstrap';
+import List from './list';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 class FilteredList extends React.Component {
   constructor(props) {
@@ -45,16 +45,16 @@ class FilteredList extends React.Component {
             className="search-input"
           />
           
-          <DropdownButton 
-            title={`Type: ${this.state.type}`}
-            id="type-dropdown"
-            onSelect={this.onFilter}
-            className="type-dropdown"
-          >
-            <MenuItem eventKey="All">All</MenuItem>
-            <MenuItem eventKey="Fruit">Fruit</MenuItem>
-            <MenuItem eventKey="Vegetable">Vegetable</MenuItem>
-          </DropdownButton>
+          <Dropdown onSelect={this.onFilter}>
+            <Dropdown.Toggle variant="primary" id="type-dropdown">
+              Type: {this.state.type}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item eventKey="All">All</Dropdown.Item>
+              <Dropdown.Item eventKey="Fruit">Fruit</Dropdown.Item>
+              <Dropdown.Item eventKey="Vegetable">Vegetable</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </div>
 
         <List items={filteredItems} />
